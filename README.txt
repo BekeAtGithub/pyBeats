@@ -1,11 +1,11 @@
-Step-by-step instructions for setting up a Python-based music production environment that integrates various libraries and tools, including SuperCollider, Ableton Live, and audio processing libraries like `pydub`, `librosa`, and `music21`. This guide covers installation, configuration, and running basic examples.
+Step-by-step instructions for setting up a Python-based music production environment that integrates various libraries and tools, including SuperCollider, Ableton Live, and audio processing libraries like -pydub-, -librosa-, and -music21-. This guide covers installation, configuration, and running basic examples.
 
 ---
 
 Prerequisites
 
 1. Python 3.7 or later: Make sure Python is installed. You can download it from [python.org](https://www.python.org/downloads/).
-2. pip: Ensure you have `pip` installed for managing Python packages.
+2. pip: Ensure you have -pip- installed for managing Python packages.
 3. Audio Software: You should have audio editing software installed (e.g., Audacity, MuseScore) for viewing and editing generated audio files.
 
 ---
@@ -19,42 +19,42 @@ Step 1: Install SuperCollider
 2. Boot the SuperCollider Server:
    - Open the SuperCollider IDE and run the following code to boot the server:
    
-   ```supercollider
+   ---supercollider
    s = Server.local;
    s.boot;
-   ```
+   ---
 
 ---
 
 Step 2: Install Python Libraries
 
-Install the following Python libraries using `pip`:
+Install the following Python libraries using -pip-:
 
-```bash
+---bash
 pip install pydub librosa music21 python-osc ableton-live-music-remote numpy matplotlib scipy python-csound
-```
+---
 
-- `pydub`: For audio processing.
-- `librosa`: For audio analysis and manipulation.
-- `music21`: For music notation, analysis, and MIDI creation.
-- `python-osc`: For OSC communication with SuperCollider or Ableton Live.
-- `ableton-live-music-remote`: To control Ableton Live from Python.
-- `numpy`, `matplotlib`, `scipy`: For audio processing and visualization.
-- `python-csound`: For integrating with Csound.
+- -pydub-: For audio processing.
+- -librosa-: For audio analysis and manipulation.
+- -music21-: For music notation, analysis, and MIDI creation.
+- -python-osc-: For OSC communication with SuperCollider or Ableton Live.
+- -ableton-live-music-remote-: To control Ableton Live from Python.
+- -numpy-, -matplotlib-, -scipy-: For audio processing and visualization.
+- -python-csound-: For integrating with Csound.
 
 ---
 
-Step 3: Set Up `LiveOSC` for Ableton Live
+Step 3: Set Up -LiveOSC- for Ableton Live
 
-1. Download and Install `LiveOSC`:
-   - If not included in your Ableton installation, download `LiveOSC` from [GitHub](https://github.com/ideoforms/LiveOSC).
-   - Place the `LiveOSC` folder in the `MIDI Remote Scripts` directory:
-     - macOS: `/Applications/Ableton Live 11 Suite.app/Contents/App-Resources/MIDI Remote Scripts/`
-     - Windows: `C:\ProgramData\Ableton\Live x.x.x\Resources\MIDI Remote Scripts\`
+1. Download and Install -LiveOSC-:
+   - If not included in your Ableton installation, download -LiveOSC- from [GitHub](https://github.com/ideoforms/LiveOSC).
+   - Place the -LiveOSC- folder in the -MIDI Remote Scripts- directory:
+     - macOS: -/Applications/Ableton Live 11 Suite.app/Contents/App-Resources/MIDI Remote Scripts/-
+     - Windows: -C:\ProgramData\Ableton\Live x.x.x\Resources\MIDI Remote Scripts\-
 
-2. Enable `LiveOSC` in Ableton Live:
-   - Open Ableton Live, go to `Preferences > MIDI/Sync`.
-   - Set `Control Surface` to `LiveOSC` and configure the input and output ports.
+2. Enable -LiveOSC- in Ableton Live:
+   - Open Ableton Live, go to -Preferences > MIDI/Sync-.
+   - Set -Control Surface- to -LiveOSC- and configure the input and output ports.
 
 ---
 
@@ -65,18 +65,18 @@ Example 1: SuperCollider Integration
 1. Create a Synth Definition in SuperCollider:
    - Open the SuperCollider IDE and run:
 
-   ```supercollider
+   ---supercollider
    SynthDef(\simpleSine, {
        |freq = 440, amp = 0.5|
        var sig;
        sig = SinOsc.ar(freq) * amp;
        Out.ar(0, sig ! 2);
    }).add;
-   ```
+   ---
 
 2. Python Script to Trigger the Synth:
 
-   ```python
+   ---python
    from pythonosc import udp_client
    import time
 
@@ -84,13 +84,13 @@ Example 1: SuperCollider Integration
    client.send_message("/s_new", ["simpleSine", -1, 1, 0, "freq", 440, "amp", 0.5])
    time.sleep(2)
    client.send_message("/n_free", [1])
-   ```
+   ---
 
 Example 2: Ableton Live Remote Control
 
 1. Python Script for Playing and Stopping the Transport in Ableton Live:
 
-   ```python
+   ---python
    from abletonremotepy import AbletonRemote
    import time
 
@@ -99,13 +99,13 @@ Example 2: Ableton Live Remote Control
    ableton.start()
    time.sleep(5)
    ableton.stop()
-   ```
+   ---
 
-Example 3: Generate a Sine Wave with `scipy`
+Example 3: Generate a Sine Wave with -scipy-
 
 1. Python Script to Generate and Save a Sine Wave:
 
-   ```python
+   ---python
    import numpy as np
    from scipy.io.wavfile import write
 
@@ -117,13 +117,13 @@ Example 3: Generate a Sine Wave with `scipy`
    sine_wave = 0.5 * np.sin(2 * np.pi * frequency * t)
 
    write('sine_wave.wav', sample_rate, (sine_wave * 32767).astype(np.int16))
-   ```
+   ---
 
-Example 4: Working with `music21`
+Example 4: Working with -music21-
 
 1. Create a Simple Melody and Export as MIDI:
 
-   ```python
+   ---python
    from music21 import stream, note, midi
 
    melody = stream.Stream()
@@ -136,43 +136,43 @@ Example 4: Working with `music21`
    mf.open('simple_melody.mid', 'wb')
    mf.write()
    mf.close()
-   ```
+   ---
 
 ---
 
 Step 5: Troubleshooting
 
 - SuperCollider Not Responding: Make sure the server is booted and the synth definition has been added.
-- Ableton LiveOSC Setup Issues: Double-check that `LiveOSC` is enabled in Ableton’s MIDI Preferences.
-- Python Library Errors: Verify that all libraries are installed. Use `pip show <library>` to confirm installation.
+- Ableton LiveOSC Setup Issues: Double-check that -LiveOSC- is enabled in Ableton’s MIDI Preferences.
+- Python Library Errors: Verify that all libraries are installed. Use -pip show <library>- to confirm installation.
 
 ---
 
-Optional: Real-Time Audio Manipulation with `pydub` and `librosa`
+Optional: Real-Time Audio Manipulation with -pydub- and -librosa-
 
-1. Install `ffmpeg` for `pydub`:
-   - Download `ffmpeg` from [ffmpeg.org](https://ffmpeg.org/download.html) and ensure it's in your system's PATH.
+1. Install -ffmpeg- for -pydub-:
+   - Download -ffmpeg- from [ffmpeg.org](https://ffmpeg.org/download.html) and ensure it's in your system's PATH.
 
 2. Real-Time Manipulation Example:
 
-   ```python
+   ---python
    from pydub import AudioSegment
 
    audio = AudioSegment.from_file('input.mp3', format='mp3')
    louder_audio = audio + 6
    louder_audio.export('output.mp3', format='mp3')
-   ```
+   ---
 
-3. Analyze Audio with `librosa`:
+3. Analyze Audio with -librosa-:
 
-   ```python
+   ---python
    import librosa
    import matplotlib.pyplot as plt
 
    y, sr = librosa.load('input.wav', sr=None)
    librosa.display.waveshow(y, sr=sr)
    plt.show()
-   ```
+   ---
 
 ---
 
