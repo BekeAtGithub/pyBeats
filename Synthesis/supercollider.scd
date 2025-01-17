@@ -1,6 +1,6 @@
 s = Server.local;
 s.boot;
-// Define a simple sine wave synth
+// Define a simple sine wave synth 
 SynthDef(\simpleSine, {
     |freq = 440, amp = 0.5|
     var sig;
